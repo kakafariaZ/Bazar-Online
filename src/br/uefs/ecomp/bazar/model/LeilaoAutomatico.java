@@ -20,7 +20,7 @@ public class LeilaoAutomatico extends Leilao {
     }
 
     @Override
-    public boolean darLance(Usuario participante, double valor) {
+    public boolean darLance(double valor) {
         if (valor > ultimoLance.getValor() && valor >= precoMinimo) {
             Lance lance = new Lance(valor, participante);
             lances.add(lance);

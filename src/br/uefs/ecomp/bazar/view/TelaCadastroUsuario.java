@@ -34,11 +34,11 @@ public class TelaCadastroUsuario extends JPanel {
 
         gbc.gridx = 0;
         gbc.gridy++;
-        this.add(new JLabel("Email:"), gbc);
+        this.add(new JLabel("Login:"), gbc);
 
         gbc.gridx = 1;
-        JTextField emailField = new JTextField(20);
-        this.add(emailField, gbc);
+        JTextField loginField = new JTextField(20);
+        this.add(loginField, gbc);
 
         gbc.gridx = 0;
         gbc.gridy++;
@@ -66,7 +66,7 @@ public class TelaCadastroUsuario extends JPanel {
         registerButton.addActionListener(e -> {
             // Lógica de registro (exemplo simples)
             String name = nameField.getText();
-            String email = emailField.getText();
+            String email = loginField.getText();
             String password = new String(passwordField.getPassword());
 
             if (registerUser(name, email, password)) {

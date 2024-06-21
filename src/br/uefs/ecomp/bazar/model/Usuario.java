@@ -91,25 +91,6 @@ public class Usuario {
         return null;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Usuario usuario = (Usuario) o;
-
-        return login.equals(usuario.login);
-    }
-
-    @Override
-    public int hashCode() {
-        return login.hashCode();
-    }
-
     public void participarLeilao(Leilao leilao) {
         leilao.cadastrarParticipante(this);
         this.participacaoLeilao = leilao;

@@ -1,7 +1,5 @@
 package br.uefs.ecomp.bazar.model;
 
-import br.uefs.ecomp.bazar.model.exception.LanceInvalidoException;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 public abstract class Leilao {
@@ -45,11 +43,27 @@ public abstract class Leilao {
         return venda;
     }
 
+    public double getPrecoMinimo() {
+        return precoMinimo;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public Usuario getVendedor() {
+        return vendedor;
+    }
+
+    public Calendar getInicio() {
+        return horaInicio;
+    }
+
     public void cadastrarParticipante(Usuario participante) {
         participantesCadastrados.add(participante);
     }
 
-    public abstract void darLanceMinimo() throws LanceInvalidoException;
+    public abstract void darLanceMinimo();
 
     public abstract boolean darLance(Usuario participante, double valor);
 

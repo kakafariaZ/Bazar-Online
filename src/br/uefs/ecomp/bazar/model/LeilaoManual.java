@@ -39,15 +39,11 @@ public class LeilaoManual extends Leilao {
     }
 
     @Override
-    public void darLanceMinimo() throws LanceInvalidoException {
-        if (status == INICIADO && !participantes.isEmpty()) {
-            double novoValor = valorAtual + incrementoMinimo;
-            Lance lance = new Lance(novoValor, participantes.get(0));
-            lances.add(lance);
-            valorAtual = novoValor;
-        } else {
-            throw new LanceInvalidoException("Não é possível dar lance mínimo no leilão.");
-        }
+    public void darLanceMinimo() {
+        double novoValor = valorAtual + incrementoMinimo;
+        Lance lance = new Lance(novoValor, participantes.get(0));
+        lances.add(lance);
+        valorAtual = novoValor;
     }
 
     @Override

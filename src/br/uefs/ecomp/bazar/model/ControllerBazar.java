@@ -1,6 +1,7 @@
 package br.uefs.ecomp.bazar.model;
 
 import br.uefs.ecomp.bazar.model.exception.LanceInvalidoException;
+import br.uefs.ecomp.bazar.model.exception.LoginFalhouException;
 import br.uefs.ecomp.bazar.model.exception.ProdutoNaoCadastrouException;
 import br.uefs.ecomp.bazar.model.exception.UsuarioNaoCadastrouException;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class ControllerBazar {
     }
 
     // Método para fazer login de um usuário
-    public Usuario fazerLogin(String login, String senha) {
+    public Usuario fazerLogin(String login, String senha) throws LoginFalhouException {
         Usuario usuario = usuarios.get(login);
         if (usuario != null && usuario.getSenha().equals(senha)) {
             usuarioLogado = usuario;
@@ -83,24 +84,18 @@ public class ControllerBazar {
 
     // Método para dar lance mínimo em um leilão
     public void darLanceMinimo() throws LanceInvalidoException {
-        Leilao leilao = usuarioLogado.getLeilao();
-        if (leilao == null) {
-            throw new LanceInvalidoException("Leilão do usuário não foi iniciado corretamente.");
-        } else {
-            leilao.darLanceMinimo();
-        }
+        usuarioLogado.darLanceMinimo();
     }
 
     // Método para dar um lance com valor específico em um leilão
-    public void darLance(double valor) throws LanceInvalidoException {
+    public boolean darLance(double valor) throws LanceInvalidoException {
         Leilao leilao = usuarioLogado.getLeilao();
         if (leilao != null) {
-            if (!leilao.darLance(usuarioLogado, valor)) {
+            if (!leilao.darLance(valor)) {
                 throw new LanceInvalidoException("Lance inválido.");
             }
-        } else {
-            throw new LanceInvalidoException("Leilão do usuário não foi iniciado corretamente.");
-        }
+        } 
+        return true;
     }
 
     // Método para encerrar um leilão ativo do usuário logado
